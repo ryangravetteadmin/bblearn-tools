@@ -32,14 +32,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelPool = new System.Windows.Forms.Panel();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.lblNumberOfMultipleChoiceInPool = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.QuestionText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Numbering = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Orientation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PartialCredit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RandomizeAnswers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblNumberOfMultipleChoiceInPool = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panelPool.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,26 +67,8 @@
             this.panelPool.Controls.Add(this.lblNumberOfMultipleChoiceInPool);
             this.panelPool.Location = new System.Drawing.Point(11, 58);
             this.panelPool.Name = "panelPool";
-            this.panelPool.Size = new System.Drawing.Size(741, 292);
+            this.panelPool.Size = new System.Drawing.Size(741, 237);
             this.panelPool.TabIndex = 2;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Location = new System.Drawing.Point(728, 8);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(24, 35);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            // 
-            // lblNumberOfMultipleChoiceInPool
-            // 
-            this.lblNumberOfMultipleChoiceInPool.AutoSize = true;
-            this.lblNumberOfMultipleChoiceInPool.Location = new System.Drawing.Point(17, 11);
-            this.lblNumberOfMultipleChoiceInPool.Name = "lblNumberOfMultipleChoiceInPool";
-            this.lblNumberOfMultipleChoiceInPool.Size = new System.Drawing.Size(173, 13);
-            this.lblNumberOfMultipleChoiceInPool.TabIndex = 0;
-            this.lblNumberOfMultipleChoiceInPool.Text = "n Multiple Choice Questions in Pool";
             // 
             // listView1
             // 
@@ -98,7 +81,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(14, 31);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(715, 248);
+            this.listView1.Size = new System.Drawing.Size(715, 191);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -128,11 +111,38 @@
             this.RandomizeAnswers.Text = "Randomize Answers";
             this.RandomizeAnswers.Width = 111;
             // 
+            // lblNumberOfMultipleChoiceInPool
+            // 
+            this.lblNumberOfMultipleChoiceInPool.AutoSize = true;
+            this.lblNumberOfMultipleChoiceInPool.Location = new System.Drawing.Point(17, 11);
+            this.lblNumberOfMultipleChoiceInPool.Name = "lblNumberOfMultipleChoiceInPool";
+            this.lblNumberOfMultipleChoiceInPool.Size = new System.Drawing.Size(173, 13);
+            this.lblNumberOfMultipleChoiceInPool.TabIndex = 0;
+            this.lblNumberOfMultipleChoiceInPool.Text = "n Multiple Choice Questions in Pool";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(728, 8);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(24, 35);
+            this.btnHelp.TabIndex = 3;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(13, 301);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(729, 121);
+            this.listBox1.TabIndex = 4;
+            // 
             // poolsettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 362);
+            this.ClientSize = new System.Drawing.Size(764, 432);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.panelPool);
             this.Controls.Add(this.label2);
@@ -159,5 +169,6 @@
         private System.Windows.Forms.ColumnHeader RandomizeAnswers;
         private System.Windows.Forms.Label lblNumberOfMultipleChoiceInPool;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

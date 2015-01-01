@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 using System.IO;
 using System.IO.Compression;
 using System.Collections.Generic;
@@ -37,12 +38,60 @@ namespace GC_BB_Exam_Tool
             foreach (string file in files)
             {
                 // each File is a zip file dropped on this window
-                // Exctract each zip file:
-                string extractDir = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file);
-                System.IO.Directory.CreateDirectory(extractDir);
-                ZipFile.ExtractToDirectory(file, extractDir);
+                // at this point we could Exctract each zip file and do things with them, but by enclosing
+                // the code in the below if...statement, only the first file will be processed:
+                if (files.First() == file)
+                {
+                    // Read from single zip file
+                    string extractDir = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file);
+                    System.IO.Directory.CreateDirectory(extractDir);
+                    ZipFile.ExtractToDirectory(file, extractDir);
+                    // Create an XML reader for the blackboard manifest file (
+                    using (XmlReader xreader = XmlReader.Create(extractDir + "\\imsmanifest.xml"))
+                    {
+                        while (xreader.Read())
+                        {
+                            // Look for start of XML elements.
+                            switch (xreader.Name)
+                            {
+                            // ----------------------------------------------------------------
+                                case "resource":
+                                    //MessageBox.Show("Start of <resource> element.");
+                                    string filenameAttribute = xreader["bb:file"]; // File
+                                    string filetypeAttribute = xreader["type"];
+                                    string filecontentsTitle = xreader["bb:title"];
+                                    if (filenameAttribute != null)
+                                    {
+                                        switch (filetypeAttribute)
+                                        {
+                                            case "assessment/x-bb-qti-pool":
+                                            int questionsInFile;
+                                            using (XmlReader questionReader = XmlReader.Create(extractDir + "\\imsmanifest.xml"))
+                                            {
+                                                while (questionReader.Read())
+                                                {
+                                                    // Look for start of XML elements.
+                                                    switch (questionReader.Name)
+                                                    {
+                                                        case "presentation":
+                                                            int questionsInFile = questionsInFile+1;
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                            listBox1.Items.Add("Found and counted questions in pool file: " + extractDir + "\\" + filenameAttribute);
+                                            listBox1.Items.Add("     > Contains question pool '" + filecontentsTitle + "' (" + questionsInFile + ") questions.");
+                                            break;
+                                        }
+                                    }
+                                    break;
+                            // ----------------------------------------------------------------
+                            }
+                            listBox1.TopIndex = listBox1.Items.Count - 1;
+                        }
+                    }
+                }
             }
-            
         }
 
         private void poolsettings_Load(object sender, EventArgs e)
