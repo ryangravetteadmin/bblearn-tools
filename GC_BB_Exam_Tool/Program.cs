@@ -16,7 +16,7 @@ namespace GC_BB_Exam_Tool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new poolsettings());
+            Application.Run(new Form1());
         }
     }
 }

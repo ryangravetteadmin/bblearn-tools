@@ -16,5 +16,12 @@ namespace GC_BB_Exam_Tool
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            poolsettings thepooleditor = new poolsettings();
+            thepooleditor.ShowDialog();
+
+        }
     }
 }
