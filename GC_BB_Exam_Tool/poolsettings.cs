@@ -87,13 +87,10 @@ namespace GC_BB_Exam_Tool
                                                             // Look for start of XML elements.
                                                             switch (questionReader.Name)
                                                             {
-                                                                case "flow":
-                                                                    string flowClass = questionReader["class"];
-                                                                    // Blackboard keeps each question inside an element that looks like <flow class="QUESTION_BLOCK"....
-                                                                    if (string.Equals(flowClass, "question_block", StringComparison.CurrentCultureIgnoreCase))
-                                                                    {
-                                                                        questionsInFile++;
-                                                                    }
+                                                                case "item":
+                                                                    string title = questionReader["title"];
+                                                                    // Blackboard keeps each question inside an element that looks like <item title=""....
+                                                                    questionsInFile++;
                                                                     break;
                                                                 default:
                                                                     // no special scenario going on

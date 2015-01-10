@@ -23,5 +23,11 @@ namespace GC_BB_Exam_Tool
             thepooleditor.ShowDialog();
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            question_authoring thequestioneditor = new question_authoring();
+            thequestioneditor.ShowDialog();
+        }
     }
 }

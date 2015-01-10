@@ -47,6 +47,7 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Question Pool Settings Changer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Visible = false;
             // 
             // button1
             // 
@@ -57,12 +58,13 @@
             this.button1.TabIndex = 1;
             this.button1.TabStop = false;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(127, 207);
+            this.pictureBox1.Location = new System.Drawing.Point(37, 207);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(274, 47);
             this.pictureBox1.TabIndex = 0;
@@ -89,12 +91,14 @@
             // 
             // button3
             // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.Location = new System.Drawing.Point(198, 55);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(113, 96);
             this.button3.TabIndex = 5;
             this.button3.TabStop = false;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -102,7 +106,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(138, 19);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Coming Soon";
+            this.label3.Text = "Exam Authoring";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
