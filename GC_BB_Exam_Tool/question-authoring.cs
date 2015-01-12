@@ -15,6 +15,7 @@ namespace GC_BB_Exam_Tool
     {
         public string qAuthorState;
         public string mc_Question;
+        public string essay_Question;
         public Boolean choosing_correctanswer;
         static List<string> mc_Answers = new List<string>();
         public int mc_correctAnswer;
@@ -75,6 +76,13 @@ namespace GC_BB_Exam_Tool
                             MessageBox.Show("Correct answer: #" + mc_correctAnswer + " is " + mc_Answers[mc_correctAnswer-1]);
                         }
                         break;
+                    case "new_essay":
+                        // start authoring a multiple choice question by selecting a question
+                        essay_Question = richTextBox1.SelectedText;
+                        lblStatus.Text = "Essay question created";
+                        qAuthorState = "essay_created";
+                        richTextBox1.DeselectAll();
+                        break;
                         // qAuthorState variable is set to a string we are unprepared for
                     default:
                         break;
@@ -128,6 +136,18 @@ namespace GC_BB_Exam_Tool
                 lblStatus.Text = "";
                 qAuthorState = "";
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void essayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            qAuthorState = "new_essay";
+            lblStatus.Text = "Select new essay question.";
+
         }
 
     }

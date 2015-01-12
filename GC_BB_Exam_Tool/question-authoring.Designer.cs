@@ -32,23 +32,34 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.pnlOptions = new System.Windows.Forms.Panel();
+            this.btnDone = new System.Windows.Forms.Button();
             this.btnSetCorrectAnswer = new System.Windows.Forms.Button();
             this.btn_Make_MC = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDone = new System.Windows.Forms.Button();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtFileOutput = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mnuAddQuestions = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addQuestionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multipleChoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.essayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlOptions.SuspendLayout();
+            this.mnuAddQuestions.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(25, 27);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 46);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(712, 233);
+            this.richTextBox1.Size = new System.Drawing.Size(712, 214);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
@@ -62,7 +73,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listView1.Location = new System.Drawing.Point(25, 390);
+            this.listView1.Location = new System.Drawing.Point(12, 363);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(712, 161);
             this.listView1.TabIndex = 2;
@@ -79,10 +90,20 @@
             this.columnHeader2.Text = "Question Text";
             this.columnHeader2.Width = 160;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Correct Answer";
+            this.columnHeader3.Width = 104;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Possible Answers";
+            this.columnHeader4.Width = 246;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 11);
+            this.label1.Location = new System.Drawing.Point(9, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(161, 13);
             this.label1.TabIndex = 3;
@@ -94,7 +115,7 @@
             this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Maroon;
-            this.lblStatus.Location = new System.Drawing.Point(25, 352);
+            this.lblStatus.Location = new System.Drawing.Point(12, 325);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(712, 35);
             this.lblStatus.TabIndex = 5;
@@ -108,10 +129,21 @@
             this.pnlOptions.Controls.Add(this.btnSetCorrectAnswer);
             this.pnlOptions.Controls.Add(this.btn_Make_MC);
             this.pnlOptions.Controls.Add(this.btnCancel);
-            this.pnlOptions.Location = new System.Drawing.Point(25, 266);
+            this.pnlOptions.Location = new System.Drawing.Point(12, 266);
             this.pnlOptions.Name = "pnlOptions";
-            this.pnlOptions.Size = new System.Drawing.Size(711, 83);
+            this.pnlOptions.Size = new System.Drawing.Size(711, 49);
             this.pnlOptions.TabIndex = 6;
+            // 
+            // btnDone
+            // 
+            this.btnDone.BackColor = System.Drawing.Color.Silver;
+            this.btnDone.Location = new System.Drawing.Point(548, 3);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(162, 38);
+            this.btnDone.TabIndex = 7;
+            this.btnDone.Text = "Done";
+            this.btnDone.UseVisualStyleBackColor = false;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // btnSetCorrectAnswer
             // 
@@ -148,42 +180,105 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnDone
+            // txtFileOutput
             // 
-            this.btnDone.BackColor = System.Drawing.Color.Silver;
-            this.btnDone.Location = new System.Drawing.Point(544, 40);
-            this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(162, 38);
-            this.btnDone.TabIndex = 7;
-            this.btnDone.Text = "Done";
-            this.btnDone.UseVisualStyleBackColor = false;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            this.txtFileOutput.Location = new System.Drawing.Point(742, 27);
+            this.txtFileOutput.Multiline = true;
+            this.txtFileOutput.Name = "txtFileOutput";
+            this.txtFileOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtFileOutput.Size = new System.Drawing.Size(435, 523);
+            this.txtFileOutput.TabIndex = 7;
             // 
-            // columnHeader3
+            // label2
             // 
-            this.columnHeader3.Text = "Correct Answer";
-            this.columnHeader3.Width = 104;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(743, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "File output preview:";
             // 
-            // columnHeader4
+            // mnuAddQuestions
             // 
-            this.columnHeader4.Text = "Possible Answers";
-            this.columnHeader4.Width = 246;
+            this.mnuAddQuestions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.addQuestionsToolStripMenuItem});
+            this.mnuAddQuestions.Location = new System.Drawing.Point(0, 0);
+            this.mnuAddQuestions.Name = "mnuAddQuestions";
+            this.mnuAddQuestions.Size = new System.Drawing.Size(737, 24);
+            this.mnuAddQuestions.TabIndex = 9;
+            this.mnuAddQuestions.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveTestToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveTestToolStripMenuItem
+            // 
+            this.saveTestToolStripMenuItem.Name = "saveTestToolStripMenuItem";
+            this.saveTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveTestToolStripMenuItem.Text = "&Save Test";
+            // 
+            // addQuestionsToolStripMenuItem
+            // 
+            this.addQuestionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.multipleChoiceToolStripMenuItem,
+            this.essayToolStripMenuItem});
+            this.addQuestionsToolStripMenuItem.Name = "addQuestionsToolStripMenuItem";
+            this.addQuestionsToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.addQuestionsToolStripMenuItem.Text = "&Add Questions";
+            // 
+            // multipleChoiceToolStripMenuItem
+            // 
+            this.multipleChoiceToolStripMenuItem.Name = "multipleChoiceToolStripMenuItem";
+            this.multipleChoiceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.multipleChoiceToolStripMenuItem.Text = "Multiple &Choice";
+            // 
+            // essayToolStripMenuItem
+            // 
+            this.essayToolStripMenuItem.Name = "essayToolStripMenuItem";
+            this.essayToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.essayToolStripMenuItem.Text = "&Essay";
+            this.essayToolStripMenuItem.Click += new System.EventHandler(this.essayToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exitToolStripMenuItem.Text = "E&xit (no saving)";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // question_authoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 558);
+            this.ClientSize = new System.Drawing.Size(737, 532);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtFileOutput);
             this.Controls.Add(this.pnlOptions);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.mnuAddQuestions);
             this.Name = "question_authoring";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Question Authoring";
             this.Load += new System.EventHandler(this.question_authoring_Load);
             this.pnlOptions.ResumeLayout(false);
+            this.mnuAddQuestions.ResumeLayout(false);
+            this.mnuAddQuestions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +299,15 @@
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TextBox txtFileOutput;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MenuStrip mnuAddQuestions;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addQuestionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem multipleChoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem essayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
