@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -82,7 +83,7 @@ namespace GC_BB_Exam_Tool
                         }
                         break;
                     case "new_essay":
-                        // start authoring a multiple choice question by selecting a question
+                        // start authoring an essay question by selecting a question
                         essay_Question = richTextBox1.SelectedText;
                         lblStatus.Text = "Essay question created";
                         qAuthorState = "essay_created";
@@ -123,15 +124,32 @@ namespace GC_BB_Exam_Tool
             if ((qAuthorState == "answers_multichoice") && (mc_correctAnswer > 0))
             {
                 string allanswers = "";
+                int lcounter = 0;
                 // Currently authoring a multiple choice question, save it.
-
                 ListViewItem addq = new ListViewItem("Multiple Choice");
+                // Blackboard's multiple choice questions should be saved to a tab-delimited text file
+                // in the following format:
+                // MC TAB question text (TAB answer text TAB correct|incorrect)
+                // "Text within ( ) may be repeated for each of the answers that are part
+                // of the Multiple Choice question. The maximum number of answers is 100."
+                // see https://help.blackboard.com/en-us/Learn/9.1_SP_14/Instructor/110_Tests_Surveys_Pools/120_Reuse_Questions/040_Upload_Questions#file_format
+                txtFileOutput.Text = txtFileOutput.Text + "MC" + "\t";
+                txtFileOutput.Text = txtFileOutput.Text + mc_Question + "\t";
                 addq.SubItems.Add(mc_Question);
                 addq.SubItems.Add(mc_Answers[mc_correctAnswer - 1]);
                 // add all possible answers to listview
                 foreach (string mcq in mc_Answers)
                 {
+                    lcounter++;
                     allanswers = allanswers + mcq + ",";
+                    if (lcounter == mc_correctAnswer)
+                    {
+                        txtFileOutput.Text = txtFileOutput.Text + mcq + "\t" + "correct\t";
+                    }
+                    else
+                    {
+                        txtFileOutput.Text = txtFileOutput.Text + mcq + "\t" + "incorrect\t";
+                    }
                 }
                 addq.SubItems.Add(allanswers);
                 listView1.Items.Add(addq);
@@ -143,6 +161,7 @@ namespace GC_BB_Exam_Tool
                 btnSetCorrectAnswer.Visible = false;
                 lblStatus.Text = "";
                 qAuthorState = "";
+                txtFileOutput.Text = txtFileOutput.Text + "\r\n";
             }
             else
             {
@@ -190,12 +209,24 @@ namespace GC_BB_Exam_Tool
 
         private void saveTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            dlgSaveTest.Filter = "TAB delimited text file|*.txt";
             dlgSaveTest.ShowDialog();
             MessageBox.Show(dlgSaveTest.FileName);
+            try {
+                System.IO.File.WriteAllText(dlgSaveTest.FileName, txtFileOutput.Text);
+            }
+            catch {
+
+            }
+            finally {
+
+            }
         }
 
         private void btnPaste_Click(object sender, EventArgs e)
         {
+            richTextBox1.ReadOnly = false;
+            richTextBox1.Clear();
             // Get the format for the object type.
             DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Rtf);
             richTextBox1.Paste(myFormat);

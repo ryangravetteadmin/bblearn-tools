@@ -59,12 +59,13 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 46);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 52);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(711, 214);
+            this.richTextBox1.Size = new System.Drawing.Size(711, 208);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseUp);
@@ -108,10 +109,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(562, 13);
+            this.label1.Size = new System.Drawing.Size(477, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Use below area and buttons to generate multiple choice questions. Use shortcut ke" +
-    "ys after creating your first question.";
+            this.label1.Text = "Author your exam in a Word processor, copy all the questions and click the paste " +
+    "button to the right.";
             // 
             // lblStatus
             // 
@@ -192,6 +193,7 @@
             this.txtFileOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtFileOutput.Size = new System.Drawing.Size(435, 523);
             this.txtFileOutput.TabIndex = 7;
+            this.txtFileOutput.WordWrap = false;
             // 
             // label2
             // 
@@ -209,7 +211,7 @@
             this.addQuestionsToolStripMenuItem});
             this.mnuAddQuestions.Location = new System.Drawing.Point(0, 0);
             this.mnuAddQuestions.Name = "mnuAddQuestions";
-            this.mnuAddQuestions.Size = new System.Drawing.Size(737, 24);
+            this.mnuAddQuestions.Size = new System.Drawing.Size(1033, 24);
             this.mnuAddQuestions.TabIndex = 9;
             this.mnuAddQuestions.Text = "menuStrip1";
             // 
@@ -267,12 +269,12 @@
             // 
             // btnPaste
             // 
-            this.btnPaste.Location = new System.Drawing.Point(579, 27);
+            this.btnPaste.Location = new System.Drawing.Point(579, 22);
             this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(143, 19);
+            this.btnPaste.Size = new System.Drawing.Size(143, 28);
             this.btnPaste.TabIndex = 10;
             this.btnPaste.TabStop = false;
-            this.btnPaste.Text = "Paste";
+            this.btnPaste.Text = "Paste (overwrite)";
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
@@ -280,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 532);
+            this.ClientSize = new System.Drawing.Size(1033, 532);
             this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFileOutput);
