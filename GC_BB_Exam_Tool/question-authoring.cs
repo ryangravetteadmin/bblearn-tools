@@ -37,6 +37,11 @@ namespace GC_BB_Exam_Tool
 
         private void btn_Make_MC_Click(object sender, EventArgs e)
         {
+            // short-circuit evaluation
+            if ((qAuthorState == "answers_multichoice") && (mc_correctAnswer > 0))
+            {
+                MessageBox.Show("You did not pick a correct answer. Select an answer for your current question before working on a new one.");
+            }
             if (qAuthorState == "answers_multichoice") {
                 btnDone_Click(sender, e);
             }
@@ -73,7 +78,7 @@ namespace GC_BB_Exam_Tool
                         {
                             choosing_correctanswer = false;
                             mc_correctAnswer = mc_Answers.Count();
-                            MessageBox.Show("Correct answer: #" + mc_correctAnswer + " is " + mc_Answers[mc_correctAnswer-1]);
+                            //MessageBox.Show("Correct answer: #" + mc_correctAnswer + " is " + mc_Answers[mc_correctAnswer-1]);
                         }
                         break;
                     case "new_essay":
@@ -112,7 +117,10 @@ namespace GC_BB_Exam_Tool
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            if (qAuthorState == "answers_multichoice")
+            // perform a short circuit evaluation (&&) - decide if
+            // the user was working on a multiple choice question,
+            // and if it had a valid answer. If not, alert the user.
+            if ((qAuthorState == "answers_multichoice") && (mc_correctAnswer > 0))
             {
                 string allanswers = "";
                 // Currently authoring a multiple choice question, save it.
@@ -136,6 +144,10 @@ namespace GC_BB_Exam_Tool
                 lblStatus.Text = "";
                 qAuthorState = "";
             }
+            else
+            {
+                MessageBox.Show("You did not select an answer for the question you are authoring.");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +160,46 @@ namespace GC_BB_Exam_Tool
             qAuthorState = "new_essay";
             lblStatus.Text = "Select new essay question.";
 
+        }
+
+        private void question_authoring_KeyDown(object sender, KeyEventArgs e)
+        {
+            // trigger new multiple choice question
+            if (e.KeyCode == Keys.Q) {
+                btn_Make_MC_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                btnSetCorrectAnswer_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                btnDone_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.C)
+            {
+                btnCancel_Click(sender, e);
+            }
+
+        }
+
+        private void multipleChoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_Make_MC_Click(sender, e);
+        }
+
+        private void saveTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dlgSaveTest.ShowDialog();
+            MessageBox.Show(dlgSaveTest.FileName);
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            // Get the format for the object type.
+            DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Rtf);
+            richTextBox1.Paste(myFormat);
+            richTextBox1.ReadOnly = true;
         }
 
     }

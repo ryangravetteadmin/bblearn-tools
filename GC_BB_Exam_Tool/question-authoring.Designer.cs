@@ -46,11 +46,13 @@
             this.mnuAddQuestions = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addQuestionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multipleChoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.essayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.dlgSaveTest = new System.Windows.Forms.SaveFileDialog();
+            this.btnPaste = new System.Windows.Forms.Button();
             this.pnlOptions.SuspendLayout();
             this.mnuAddQuestions.SuspendLayout();
             this.SuspendLayout();
@@ -59,8 +61,9 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(12, 46);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(712, 214);
+            this.richTextBox1.Size = new System.Drawing.Size(711, 214);
             this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -103,11 +106,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 30);
+            this.label1.Location = new System.Drawing.Point(13, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 13);
+            this.label1.Size = new System.Drawing.Size(562, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Paste or create questions below:";
+            this.label1.Text = "Use below area and buttons to generate multiple choice questions. Use shortcut ke" +
+    "ys after creating your first question.";
             // 
             // lblStatus
             // 
@@ -141,7 +145,7 @@
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(162, 38);
             this.btnDone.TabIndex = 7;
-            this.btnDone.Text = "Done";
+            this.btnDone.Text = "Done (D)";
             this.btnDone.UseVisualStyleBackColor = false;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
@@ -152,7 +156,7 @@
             this.btnSetCorrectAnswer.Name = "btnSetCorrectAnswer";
             this.btnSetCorrectAnswer.Size = new System.Drawing.Size(162, 38);
             this.btnSetCorrectAnswer.TabIndex = 6;
-            this.btnSetCorrectAnswer.Text = "Set Correct Answer";
+            this.btnSetCorrectAnswer.Text = "Set Correct Answer (A)";
             this.btnSetCorrectAnswer.UseVisualStyleBackColor = false;
             this.btnSetCorrectAnswer.Visible = false;
             this.btnSetCorrectAnswer.Click += new System.EventHandler(this.btnSetCorrectAnswer_Click);
@@ -164,7 +168,7 @@
             this.btn_Make_MC.Name = "btn_Make_MC";
             this.btn_Make_MC.Size = new System.Drawing.Size(162, 38);
             this.btn_Make_MC.TabIndex = 5;
-            this.btn_Make_MC.Text = "New Multiple Choice";
+            this.btn_Make_MC.Text = "New Multiple Choice (Q)";
             this.btn_Make_MC.UseVisualStyleBackColor = false;
             this.btn_Make_MC.Click += new System.EventHandler(this.btn_Make_MC_Click);
             // 
@@ -175,7 +179,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(162, 38);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel Question";
+            this.btnCancel.Text = "Cancel Question (C)";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -222,8 +226,21 @@
             // saveTestToolStripMenuItem
             // 
             this.saveTestToolStripMenuItem.Name = "saveTestToolStripMenuItem";
-            this.saveTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveTestToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.saveTestToolStripMenuItem.Text = "&Save Test";
+            this.saveTestToolStripMenuItem.Click += new System.EventHandler(this.saveTestToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exitToolStripMenuItem.Text = "E&xit (no saving)";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // addQuestionsToolStripMenuItem
             // 
@@ -239,6 +256,7 @@
             this.multipleChoiceToolStripMenuItem.Name = "multipleChoiceToolStripMenuItem";
             this.multipleChoiceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.multipleChoiceToolStripMenuItem.Text = "Multiple &Choice";
+            this.multipleChoiceToolStripMenuItem.Click += new System.EventHandler(this.multipleChoiceToolStripMenuItem_Click);
             // 
             // essayToolStripMenuItem
             // 
@@ -247,23 +265,23 @@
             this.essayToolStripMenuItem.Text = "&Essay";
             this.essayToolStripMenuItem.Click += new System.EventHandler(this.essayToolStripMenuItem_Click);
             // 
-            // exitToolStripMenuItem
+            // btnPaste
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.exitToolStripMenuItem.Text = "E&xit (no saving)";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.btnPaste.Location = new System.Drawing.Point(579, 27);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(143, 19);
+            this.btnPaste.TabIndex = 10;
+            this.btnPaste.TabStop = false;
+            this.btnPaste.Text = "Paste";
+            this.btnPaste.UseVisualStyleBackColor = true;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
             // question_authoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 532);
+            this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFileOutput);
             this.Controls.Add(this.pnlOptions);
@@ -272,10 +290,12 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.mnuAddQuestions);
+            this.KeyPreview = true;
             this.Name = "question_authoring";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Question Authoring";
             this.Load += new System.EventHandler(this.question_authoring_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.question_authoring_KeyDown);
             this.pnlOptions.ResumeLayout(false);
             this.mnuAddQuestions.ResumeLayout(false);
             this.mnuAddQuestions.PerformLayout();
@@ -309,5 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem essayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.SaveFileDialog dlgSaveTest;
+        private System.Windows.Forms.Button btnPaste;
     }
 }
