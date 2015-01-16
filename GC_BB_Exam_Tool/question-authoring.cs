@@ -134,7 +134,7 @@ namespace GC_BB_Exam_Tool
                 // of the Multiple Choice question. The maximum number of answers is 100."
                 // see https://help.blackboard.com/en-us/Learn/9.1_SP_14/Instructor/110_Tests_Surveys_Pools/120_Reuse_Questions/040_Upload_Questions#file_format
                 txtFileOutput.Text = txtFileOutput.Text + "MC" + "\t";
-                txtFileOutput.Text = txtFileOutput.Text + mc_Question + "\t";
+                txtFileOutput.Text = txtFileOutput.Text + mc_Question.Trim() + "\t";
                 addq.SubItems.Add(mc_Question);
                 addq.SubItems.Add(mc_Answers[mc_correctAnswer - 1]);
                 // add all possible answers to listview
